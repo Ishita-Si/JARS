@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Logo from "@/assets/logo.svg";
+import Image from "next/image";
 
 const patterns = [
   "Recursion", "Dynamic Programming", "Memoization", "Binary Search", "DFS", "BFS",
@@ -11,10 +13,12 @@ export default function Home() {
     <main className="min-h-screen relative z-10">
       <nav className="sticky top-0 z-20 backdrop-blur-lg bg-bg/70 border-b border-border-soft">
         <div className="max-w-[1180px] mx-auto px-7 py-4 flex items-center justify-between">
-          <div className="font-display font-bold text-lg flex items-center gap-2">
-            <span className="w-6 h-6 rounded-md bg-gradient-to-br from-indigo to-purple flex items-center justify-center text-xs font-mono font-semibold">
-              J
-            </span>
+          <div className="font-display font-bold text-lg flex items-center gap-0">
+            <Image
+              src={Logo}
+              alt="Logo"
+              className="w-12 h-8 rounded-md object-contain"
+            />
             JARS
           </div>
           <Link

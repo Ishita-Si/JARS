@@ -1,7 +1,7 @@
 ```gitignore
 # Virtual environments
 .venv/
-
+.env.local
 
 # Python cache
 __pycache__/

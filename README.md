@@ -57,7 +57,7 @@ a hash-map two-sum solution, plus an infinite-loop guard.
     sign in/up (`AuthModal`), save/list/load/delete visualizations
     (`SessionsPanel`), and an "Ask JARS" box (`AskJarsPanel`) that sends
     the current code + scrubbed-to variable state as context and shows a
-    clear message if `ANTHROPIC_API_KEY` isn't configured yet (503)
+    clear message if `GEMINI_API_KEY` isn't configured yet (503)
 
 **Not built yet:**
 - Other languages (Python, C++, Java, Go, Rust...) — the architecture
@@ -132,7 +132,7 @@ cd backend
 python -m venv venv
 source venv/bin/activate   # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
-cp .env.example .env       # then fill in JWT_SECRET and (optionally) ANTHROPIC_API_KEY
+cp example.env .env      # then fill in JWT_SECRET and (optionally) GEMINI_API_KEY
 uvicorn main:app --reload
 ```
 
@@ -140,7 +140,7 @@ API docs at http://localhost:8000/docs. With both servers running, sign
 up from the "Sign in" button in the visualizer nav, then use "My
 Sessions" to save/load code and "Ask JARS" (under the console panel) to
 query the AI insights endpoint — it'll tell you plainly if
-`ANTHROPIC_API_KEY` isn't set yet rather than failing silently.
+`GEMINI_API_KEY` isn't set yet rather than failing silently.
 
 ## Supported language features (interpreter)
 

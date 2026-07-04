@@ -17,19 +17,19 @@ SYSTEM_PROMPT = (
 
 @router.post("", response_model=InsightResponse)
 def get_insight(payload: InsightRequest, current_user=Depends(get_current_user)):
-    api_key = os.getenv("ANTHROPIC_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise HTTPException(
             status_code=503,
-            detail="ANTHROPIC_API_KEY is not configured on the server. Set it in backend/.env to enable AI insights.",
+            detail="GEMINI_API_KEY is not configured on the server. Set it in backend/.env.local to enable AI insights.",
         )
 
     try:
-        import anthropic
+        import GEMINI
     except ImportError:
-        raise HTTPException(status_code=500, detail="anthropic package not installed — see backend/requirements.txt")
+        raise HTTPException(status_code=500, detail="GEMINI package not installed — see backend/requirements.txt")
 
-    client = anthropic.Anthropic(api_key=api_key)
+    client = GEMINI.GEMINI(api_key=api_key)
 
     context_lines = [f"Code:\n{payload.code}"]
     if payload.current_line is not None:
