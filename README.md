@@ -48,7 +48,13 @@ a hash-map two-sum solution, plus an infinite-loop guard.
     companion `visited`/`seen` set. Verified against a BFS trace.
   - A `VisualizationCanvas` switcher shows whichever of these apply to
     the current scope simultaneously (e.g. two-sum shows the array *and*
-    the hash map at once).
+    the hash map at once), separated by clear dividers so multiple active
+    canvases never look like one blob
+- **Resizable layout** — the code editor, visualization canvas, and the
+  console/variables/call-stack stack are all draggable split panes
+  (`components/ResizableSplit.tsx`), so a tall recursion tree or a wide
+  DP table can be given more room without permanently hiding the other
+  panels. Double-click a divider to reset it to its default split..
 - **Full-stack wiring, tested end-to-end:**
   - FastAPI backend: JWT auth (signup/login/me), session persistence
     (SQLite via SQLModel), and an AI insights endpoint wired to the
@@ -107,7 +113,7 @@ jars/
     routers/
       auth.py         signup / login / me (JWT)
       sessions.py      save / list / get / delete visualizations
-      insights.py      AI runtime explanations (API)
+      insights.py      AI runtime explanations (Claude API)
 ```
 
 ## Running it locally
@@ -132,7 +138,7 @@ cd backend
 python -m venv venv
 source venv/bin/activate   # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
-cp example.env .env      # then fill in JWT_SECRET and (optionally) GEMINI_API_KEY
+cp .env.example .env       # then fill in JWT_SECRET and (optionally) GEMINI_API_KEY
 uvicorn main:app --reload
 ```
 
@@ -151,3 +157,4 @@ literals, common array methods (`push`, `map`, `filter`, `reduce`,
 `sort`, ...), and `console.log`. Unsupported constructs raise a clear
 `InterpreterError` naming the unsupported node type rather than failing
 silently.
+

@@ -24,7 +24,7 @@ export default function VisualizationCanvas() {
   const showRecursion = hasRecursion(trace.steps);
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center gap-6 py-4 overflow-auto">
+    <div className="flex-1 flex flex-col items-stretch justify-start py-4 px-4 overflow-auto [&>*+*]:mt-6 [&>*+*]:border-t [&>*+*]:border-border-soft [&>*+*]:pt-6">
       {showRecursion && <RecursionTree />}
       <TreeCanvas />
       <LinkedListCanvas />

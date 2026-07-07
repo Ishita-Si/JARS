@@ -13,6 +13,7 @@ import VisualizationCanvas from "@/components/VisualizationCanvas";
 import AuthModal from "@/components/AuthModal";
 import SessionsPanel from "@/components/SessionsPanel";
 import AskJarsPanel from "@/components/AskJarsPanel";
+import ResizableSplit from "@/components/ResizableSplit";
 
 // Monaco touches window/navigator — must load client-side only.
 const CodeEditor = dynamic(() => import("@/components/CodeEditor"), { ssr: false });
@@ -218,23 +219,41 @@ export default function VisualizerPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="border-r border-border-soft h-[600px]">
-              <CodeEditor />
-            </div>
-            <div className="flex flex-col h-[600px]">
-              <div className="flex-1 overflow-auto border-b border-border-soft bg-bg-2/40 flex">
-                <VisualizationCanvas />
-              </div>
-              <div className="p-4 flex flex-col gap-3 overflow-auto max-h-[280px]">
-                <ConsolePanel />
-                <div className="flex gap-3 flex-wrap">
-                  <VariableInspector />
-                  <CallStackView />
+          <div className="h-[680px]">
+            <ResizableSplit
+              direction="horizontal"
+              defaultSize={45}
+              min={25}
+              max={70}
+              first={
+                <div className="h-full border-r border-border-soft">
+                  <CodeEditor />
                 </div>
-                <AskJarsPanel />
-              </div>
-            </div>
+              }
+              second={
+                <ResizableSplit
+                  direction="vertical"
+                  defaultSize={60}
+                  min={20}
+                  max={85}
+                  first={
+                    <div className="h-full bg-bg-2/40 flex">
+                      <VisualizationCanvas />
+                    </div>
+                  }
+                  second={
+                    <div className="h-full p-4 flex flex-col gap-3 overflow-auto">
+                      <ConsolePanel />
+                      <div className="flex gap-3 flex-wrap">
+                        <VariableInspector />
+                        <CallStackView />
+                      </div>
+                      <AskJarsPanel />
+                    </div>
+                  }
+                />
+              }
+            />
           </div>
 
           <Timeline />
